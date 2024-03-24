@@ -11,25 +11,24 @@ class ImagesListCell: UITableViewCell {
     
     static let reuseIdentifier = "ImagesListCell"
     
-    private lazy var cellImageView: UIImageView = {
+    lazy var cellImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.image = UIImage(named: "0")
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 8
         return image
     }()
     
-    private lazy var likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
         return button
     }()
     
-    private lazy var dateLabel: UILabel = {
+    lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = .black
-        label.text = "10.10.2010"
+        label.textColor = .systemBackground
         return label
     }()
     
@@ -38,6 +37,8 @@ class ImagesListCell: UITableViewCell {
         
         addSubviews()
         setupConstraints()
+        
+        contentView.backgroundColor = .black
     }
     
     required init?(coder: NSCoder) {
@@ -45,7 +46,7 @@ class ImagesListCell: UITableViewCell {
     }
     
     private func addSubviews() {
-        let subviews = [cellImageView, likeButton, dateLabel]
+        let subviews = [cellImage, likeButton, dateLabel]
         
         subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -55,17 +56,17 @@ class ImagesListCell: UITableViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            cellImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cellImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            cellImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cellImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            likeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            likeButton.widthAnchor.constraint(equalToConstant: 30),
-            likeButton.heightAnchor.constraint(equalToConstant: 30),
+            cellImage.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            cellImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            cellImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)        ])
+            likeButton.topAnchor.constraint(equalTo: cellImage.topAnchor, constant: 8),
+            likeButton.trailingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: -8),
+
+            dateLabel.leadingAnchor.constraint(equalTo: cellImage.leadingAnchor, constant: 8),
+            dateLabel.bottomAnchor.constraint(equalTo: cellImage.bottomAnchor)
+        ])
     }
 }

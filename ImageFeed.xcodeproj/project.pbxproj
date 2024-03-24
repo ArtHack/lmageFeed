@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D2854372BAB50D100B91785 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2854362BAB50D100B91785 /* ImagesListCell.swift */; };
+		6D39D7AE2BAD980700CFCC77 /* TabbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D39D7AD2BAD980700CFCC77 /* TabbarVC.swift */; };
 		6D4D25B42B930F31004E23AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4D25B32B930F31004E23AD /* AppDelegate.swift */; };
 		6D4D25B62B930F31004E23AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4D25B52B930F31004E23AD /* SceneDelegate.swift */; };
 		6D4D25B82B930F31004E23AD /* ImagesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4D25B72B930F31004E23AD /* ImagesListVC.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		6D2854362BAB50D100B91785 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
+		6D39D7AD2BAD980700CFCC77 /* TabbarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVC.swift; sourceTree = "<group>"; };
 		6D4D25B02B930F31004E23AD /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D4D25B32B930F31004E23AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D4D25B52B930F31004E23AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				6D2854352BAB50A900B91785 /* ImagesList */,
 				6D4D25B32B930F31004E23AD /* AppDelegate.swift */,
 				6D4D25B52B930F31004E23AD /* SceneDelegate.swift */,
+				6D39D7AD2BAD980700CFCC77 /* TabbarVC.swift */,
 				6D799E5A2BAAF99D00354902 /* ProfileVC.swift */,
 				6D4D25BC2B930F32004E23AD /* Assets.xcassets */,
 				6D4D25BE2B930F32004E23AD /* LaunchScreen.storyboard */,
@@ -150,6 +153,7 @@
 			files = (
 				6D4D25B82B930F31004E23AD /* ImagesListVC.swift in Sources */,
 				6D799E5B2BAAF99D00354902 /* ProfileVC.swift in Sources */,
+				6D39D7AE2BAD980700CFCC77 /* TabbarVC.swift in Sources */,
 				6D2854372BAB50D100B91785 /* ImagesListCell.swift in Sources */,
 				6D4D25B42B930F31004E23AD /* AppDelegate.swift in Sources */,
 				6D4D25B62B930F31004E23AD /* SceneDelegate.swift in Sources */,
