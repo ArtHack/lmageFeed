@@ -16,26 +16,52 @@ extension UIImage {
 }
 
 enum Tabs: String, CaseIterable {
-    case imagesList, prifile
+    case imagesList, profile
     
     var image: UIImage {
         switch self {
         case .imagesList:
-            return .imagesListActive
-        case .prifile:
-            return .profileActive
+            return .imagesListTabIcon
+        case .profile:
+            return .profile
+        }
+    }
+    
+    var viewController: UIViewController {
+        switch self {
+        case .imagesList:
+            return ImagesListVC()
+        case .profile:
+            return ProfileVC()
         }
     }
 }
 
 final class TabBarController: UITabBarController {
-    private func configure() {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureTabBar()
+        setupTabBar()
+    }
+    
+    private func configureTabBar() {
         let viewControllers = Tabs.allCases.map { tab in
-            let viewController = UIViewController()
+            let viewController = tab.viewController
             let navigationController = UINavigationController(rootViewController: viewController)
             navigationController.tabBarItem.image = tab.image
             return navigationController
         }
         setViewControllers(viewControllers, animated: true)
+    }
+}
+
+extension TabBarController {
+    private func setupTabBar() {
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.tintColor = .white
+        tabBarAppearance.barStyle = .black
+        tabBarAppearance.isTranslucent = false
     }
 }

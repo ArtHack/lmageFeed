@@ -70,18 +70,15 @@ final class ProfileVC: UIViewController {
 
                 userName.topAnchor.constraint(equalTo: userPhoto.bottomAnchor, constant: 8),
                 userName.leadingAnchor.constraint(equalTo: userPhoto.leadingAnchor),
-                userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
 
                 userNickname.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 8),
                 userNickname.leadingAnchor.constraint(equalTo: userPhoto.leadingAnchor),
-                userNickname.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
 
                 userStatus.topAnchor.constraint(equalTo: userNickname.bottomAnchor, constant: 8),
                 userStatus.leadingAnchor.constraint(equalTo: userPhoto.leadingAnchor),
-                userStatus.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
 
                 logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
                 logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-        ]) 
+        ])
     }
 }

@@ -18,31 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = createTabbar()
+        window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
-    }
-    
-    func createProfileNC() -> UINavigationController {
-        let profileVC = ProfileVC()
-        let profileImage = UIImage(named: "ProfileActive")
-        profileVC.tabBarItem = UITabBarItem(title: nil, image: profileImage, tag: 0)
-        return UINavigationController(rootViewController: profileVC)
-    }
-    
-    func createImageListNC() -> UINavigationController {
-        let imagesListVC = ImagesListVC()
-        let imageListImage = UIImage(named: "ImagesListActive")
-        imagesListVC.tabBarItem = UITabBarItem(title: nil, image: imageListImage, tag: 1)
-        return UINavigationController(rootViewController: imagesListVC)
-    }
-    
-    func createTabbar() -> UITabBarController {
-        let tabbar = UITabBarController()
-        UITabBar.appearance().tintColor = .white
-        tabbar.tabBar.barStyle = .black
-        tabbar.tabBar.isTranslucent = false
-        tabbar.viewControllers = [createImageListNC(), createProfileNC()]
-        return tabbar
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
