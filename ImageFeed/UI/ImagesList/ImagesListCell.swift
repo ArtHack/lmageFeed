@@ -38,7 +38,7 @@ class ImagesListCell: UITableViewCell {
         setupSubviews()
         setupConstraints()
         
-        contentView.backgroundColor = .black
+        contentView.backgroundColor = UIColor.IFColors.black
     }
     
     required init?(coder: NSCoder) {

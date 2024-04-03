@@ -9,15 +9,17 @@ import UIKit
 
 class ImagesListVC: UIViewController {
     
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
+    
     private let photosName: [String] = Array(0..<20).map { "\($0)" }
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: view.bounds, style: .plain)
+        let tableView = UITableView()
         tableView.register(ImagesListCell.self, forCellReuseIdentifier: ImagesListCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = UIColor.IFColors.black
         tableView.separatorStyle = .none
         
         tableView.delegate = self
@@ -25,17 +27,19 @@ class ImagesListVC: UIViewController {
         return tableView
     }()
     
-    private lazy var dateFormater: DateFormatter = {
-        let formater = DateFormatter()
-        formater.dateStyle = .long
-        formater.timeStyle = .none
-        return formater
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
     }()
 
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(tableView)
+        setupConstraints()
     }
     
     func configureCell(for cell: ImagesListCell, with indexPath: IndexPath) {
@@ -43,11 +47,20 @@ class ImagesListVC: UIViewController {
             return
         }
         cell.cellImage.image = image
-        cell.dateLabel.text = dateFormater.string(from: Date())
+        cell.dateLabel.text = dateFormatter.string(from: Date())
         
         let isLiked = indexPath.row % 2 == 0
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         cell.likeButton.setImage(likeImage, for: .normal)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        ])
     }
 }
 
@@ -82,5 +95,12 @@ extension ImagesListVC: UITableViewDelegate {
         let scale = imageViewWidth / imageWidth
         let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
         return cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let image = UIImage(named: photosName[indexPath.row])
+        let viewController = SingleImageViewController()
+        viewController.image = image
+        present(viewController, animated: true)
     }
 }

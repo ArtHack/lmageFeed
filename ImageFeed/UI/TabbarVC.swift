@@ -42,8 +42,11 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.contentMode = .scaleToFill
+        view.backgroundColor = .clear
+        
         configureTabBar()
-        setupTabBar()
+
     }
     
     private func configureTabBar() {
@@ -51,17 +54,18 @@ final class TabBarController: UITabBarController {
             let viewController = tab.viewController
             let navigationController = UINavigationController(rootViewController: viewController)
             navigationController.tabBarItem.image = tab.image
+            
+            UINavigationBar.appearance().isHidden = true
+            
+            let tabBarAppearance = UITabBar.appearance()
+            tabBarAppearance.tintColor = .white
+            tabBarAppearance.isTranslucent = false
+            tabBarAppearance.backgroundColor = UIColor.IFColors.black
+            tabBarAppearance.barTintColor = UIColor.IFColors.black
+            
             return navigationController
         }
         setViewControllers(viewControllers, animated: true)
     }
 }
 
-extension TabBarController {
-    private func setupTabBar() {
-        let tabBarAppearance = UITabBar.appearance()
-        tabBarAppearance.tintColor = .white
-        tabBarAppearance.barStyle = .black
-        tabBarAppearance.isTranslucent = false
-    }
-}
