@@ -81,7 +81,6 @@ final class SingleImageViewController: UIViewController {
     }
     
     private func centerImageInScrollView() {
-//        ToDo: isn't centered
         let imageViewSize = singleImageView.frame.size
         let scrollViewSize = view.frame.size
         let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
@@ -105,6 +104,8 @@ final class SingleImageViewController: UIViewController {
             
             backButton.heightAnchor.constraint(equalToConstant: 48),
             backButton.widthAnchor.constraint(equalToConstant: 48),
+            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 8),
+            backButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 8),
             
             singleImageView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             singleImageView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
