@@ -7,22 +7,37 @@
 
 import UIKit
 
-class AuthVC: UIViewController {
+protocol AuthVCDelegate: AnyObject {
+    func authViewController(_ vc: AuthVC, didAuthenticateWithCode code: String)
+}
+
+final class AuthVC: UIViewController {
     
+    weak var delegate: AuthVCDelegate?
+
+// MARK: - UI
     private let authImageView = UIImageView()
     private let loginButton = UIButton()
     
+    let webView = WebViewVC()
+
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.delegate = self
+        
+        view.backgroundColor = .ifBlack
         
         self.view.addSubview(authImageView)
         self.view.addSubview(loginButton)
         
-        configureUI()
+        setupUI()
         setupConstraints()
     }
-    
-    func configureUI() {
+
+// MARK: - UISetup Methods
+    func setupUI() {
         authImageView.image = UIImage(named: "auth_screen_logo")
         
         loginButton.setTitle("Enter", for: .normal)
@@ -30,6 +45,8 @@ class AuthVC: UIViewController {
         loginButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
         loginButton.backgroundColor = .white
         loginButton.layer.cornerRadius = 16
+        
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     
     private func setupConstraints() {
@@ -47,5 +64,22 @@ class AuthVC: UIViewController {
         ])
         authImageView.translatesAutoresizingMaskIntoConstraints = false
         loginButton.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    @objc
+    func didTapLoginButton() {
+        let VC = WebViewVC()
+        present(VC, animated: false)
+    }
+}
+
+// MARK: - WebViewViewControllerDelegate
+extension AuthVC: WebViewViewControllerDelegate {
+    func webViewViewController(_ vc: WebViewVC, didAuthenticateWithCode code: String) {
+        delegate?.authViewController(self, didAuthenticateWithCode: code)
+    }
+    
+    func webViewViewControllerDidCancel(_ vc: WebViewVC) {
+        dismiss(animated: true)
     }
 }
