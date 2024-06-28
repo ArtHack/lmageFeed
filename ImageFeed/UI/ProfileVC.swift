@@ -9,6 +9,7 @@ import UIKit
 
 final class ProfileVC: UIViewController {
     
+// MARK: - UI
     private lazy var userPhoto: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPhoto")
@@ -44,14 +45,15 @@ final class ProfileVC: UIViewController {
         return button
     }()
     
-    
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         setupViews()
         setupConstraints()
     }
-    
+
+// MARK: - UISetupMethods
     private func setupViews() {
         let views = [userPhoto, userName, userNickname, userStatus, logoutButton]
         views.forEach {
